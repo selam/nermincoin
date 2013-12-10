@@ -26,7 +26,9 @@ def get_btcturk():
     btcturk_price = re.findall('<strong class="bidPrice">(.*?)</strong>', btcturk)[1]
     btcturk_price = re.sub("\s+", "", btcturk_price)[0:-3]
 
-    return "btcturk: {} tl".format(btcturk_price).strip()
+    koinim_price = requests.get("http://koinim.com/ticker/").json()["sell"]
+
+    return "koinim: {0} tl, btcturk: {1} tl".format(koinim_price, btcturk_price).strip()
 
 
 def _convert_human_readable(coinname, btc_price, price):
@@ -140,6 +142,6 @@ if __name__ == "__main__":
   try:
     bt = BasicTest()
     bt.run_test()
-    run_bot(GreeterBot, 'irc.freenode.net', 6667, 'nermincoin', ['#btcsohbet', '#speedlings', '#bitcoin-tr', '#eksicoin',])
+    run_bot(GreeterBot, 'irc.freenode.net', 6667, 'nermincoin', ['#btcsohbet', '#speedlings', '#bitcoin-tr', '#eksicoin', '#cointurk'])
   except Exception, e:
     print e
