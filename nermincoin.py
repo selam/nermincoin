@@ -140,6 +140,6 @@ if __name__ == "__main__":
   try:
     bt = BasicTest()
     bt.run_test()
-    run_bot(GreeterBot, 'irc.freenode.net', 6667, 'carlarim', ['#btcsohbet', '#speedlings', '#bitcoin-tr', '#eksicoin',])
+    run_bot(GreeterBot, 'irc.freenode.net', 6667, 'nermincoin', ['#btcsohbet', '#speedlings', '#bitcoin-tr', '#eksicoin',])
   except Exception, e:
     print e
