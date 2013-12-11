@@ -52,7 +52,9 @@ class Commands():
     BEER_POOL_MAP = {
       "emre": "ALCcH7UhiVqtBjmgGazhSL2DPbD8kJzbMA",
       "selam": "AStUNG9WgcuXrgu6ZNxWfz26b1PsAqQgE3",
-      "raistlinthewiz": "AeZmUGwAnZgn785oYTm7K9BqwhW52kVa6E"
+      "raistlinthewiz": "AeZmUGwAnZgn785oYTm7K9BqwhW52kVa6E",
+      "roninhack": "AKyvUyrj6zfgBrh2RKAEPK2i1KLKUJr4Th",
+      "to1ga": "AULqpbRA1zEfoVW75RyheHP5TajQMhjjaM",
     } 
 
     NEWS_MAP = {
@@ -75,8 +77,7 @@ class Commands():
         
         
     def get_mtgox(self, nick, message, channel):
-        data = requests.get("http://data.mtgox.com/api/2/BTCUSD/money/ticker_fast").json()
-        return data["data"]["sell"]["display_short"]
+        return None
 
     def _news(self, mapname, random_post=None):
         if mapname in self.NEWS_MAP:
@@ -98,7 +99,7 @@ class Commands():
         return self._news("qrknews")
 
     def help(self, nick, message, channel):
-        return "komutlar: !mtgox, !s, !ltcnews, !btcnews, !qrknews, !beer, !xpm_mining"
+        return "komutlar: !s, !ltcnews, !btcnews, !qrknews, !beer, !xpm_mining"
         
     def get_beer(self, nick, message, channel):
         for _nick, address in self.BEER_POOL_MAP.iteritems():       
@@ -144,4 +145,5 @@ if __name__ == "__main__":
     bt.run_test()
     run_bot(GreeterBot, 'irc.freenode.net', 6667, 'nermincoin', ['#btcsohbet', '#speedlings', '#bitcoin-tr', '#eksicoin', '#cointurk'])
   except Exception, e:
-    print e
+    import traceback
+    traceback.print_exc()
