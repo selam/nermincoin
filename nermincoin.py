@@ -55,6 +55,8 @@ class Commands():
       "raistlinthewiz": "AeZmUGwAnZgn785oYTm7K9BqwhW52kVa6E",
       "roninhack": "AKyvUyrj6zfgBrh2RKAEPK2i1KLKUJr4Th",
       "to1ga": "AULqpbRA1zEfoVW75RyheHP5TajQMhjjaM",
+      "mentalpanda": "AdDaAxhUPMKBcZVWyceRLW14qLZgougLPA",
+      "ras0ir": "AbXyjgcDBLfpGV4Ss4ATHW8vGsuTCeJPvH",
     } 
 
     NEWS_MAP = {
