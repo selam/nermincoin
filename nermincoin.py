@@ -47,6 +47,7 @@ def get_qrk(btc_price):
 
     return ", qrk: $" + str(qrk_usd)
 
+
 class Commands():
   
     BEER_POOL_MAP = {
@@ -63,6 +64,11 @@ class Commands():
       "btcnews": "bitcoin",
       "ltcnews": "litecoin",
       "qrknews": "quarkcoin"
+    }
+    
+    QRK_POOL_MAP = {
+        "emre": "QeynJL3C92or5ve6UM2pK1nyGFWaYs8MvL",
+        "ras0ir": "QT9GiCCkJADDTgmuFsqDXXZePrU9kHhYb8",
     }
 
     def get_currency(self, nick, message, channel):
@@ -110,7 +116,15 @@ class Commands():
                  result = re.findall("current balance: (.*?)<br/>", r)
                  
                  return result[0]
-            
+   
+    def get_qrk_balance(self, nick, message, channel):
+        for _nick, address in self.QRK_POOL_MAP.iteritems():       
+            if nick in _nick:
+                 r = requests.get("http://block.lowend.fm/address/"+address).text
+                 result = re.findall("Balance: (.*?) QRK", r)
+                 
+                 return result[0]
+                 
     def xpm_mining(self, nick, message, channel):      
         XPM_MINING = "beeeeer.org pool'u uzerinden genel bilgi ve miner client: http://www.peercointalk.org/index.php?topic=485.0 " 
         XPM_MINING += "cloud mining: http://www.hiddentao.com/archives/2013/11/24/cloud-primecoin-mining-on-ubuntu-12-04-with-auto-restart"
@@ -138,6 +152,7 @@ class GreeterBot(IRCBot, Commands):
             ('!btcnews$', self.get_btc_news),
             ('!qrknews$', self.get_qrk_news),
             ('!beer$', self.get_beer),
+            ('!votka$', self.get_qrk_balance),
             ('!xpm_mining', self.xpm_mining),
             ('!help$', self.help)
         )
@@ -145,7 +160,7 @@ if __name__ == "__main__":
   try:
     bt = BasicTest()
     bt.run_test()
-    run_bot(GreeterBot, 'irc.freenode.net', 6667, 'nermincoin', ['#btcsohbet', '#speedlings', '#bitcoin-tr', '#eksicoin', '#cointurk'])
+    run_bot(GreeterBot, 'irc.freenode.net', 6667, 'nermincoin2', ['#btcsohbet', '#speedlings', '#bitcoin-tr', '#eksicoin', '#cointurk'])
   except Exception, e:
     import traceback
     traceback.print_exc()
